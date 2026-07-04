@@ -1,0 +1,87 @@
+/* Import Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@500;600;700&display=swap');
+
+/* Global Reset & Typography */
+html, body, [class*="css"] {
+    font-family: 'Inter', sans-serif;
+    background-color: #F8FAFC;
+    color: #111827;
+}
+
+h1, h2, h3, h4, h5 {
+    font-family: 'Poppins', sans-serif;
+    color: #0F172A;
+}
+
+/* Hide Default Streamlit Elements to look like a SaaS */
+#MainMenu {visibility: hidden;}
+footer {visibility: hidden;}
+header {visibility: hidden;}
+
+/* Glassmorphism Sidebar */
+[data-testid="stSidebar"] {
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-right: 1px solid #E5E7EB;
+}
+
+/* Premium Property Cards */
+.property-card {
+    background: #FFFFFF;
+    border-radius: 16px;
+    padding: 16px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+    transition: all 0.3s ease;
+    border: 1px solid #E5E7EB;
+    margin-bottom: 20px;
+}
+
+.property-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    border-color: #2563EB;
+}
+
+.property-img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 12px;
+}
+
+/* Badges */
+.badge-verified {
+    background: rgba(34, 197, 94, 0.1);
+    color: #22C55E;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.badge-uni {
+    background: rgba(37, 99, 235, 0.1);
+    color: #2563EB;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+/* Gradient Buttons */
+.stButton > button {
+    background: linear-gradient(135deg, #2563EB 0%, #1E40AF 100%);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 0.5rem 1.5rem;
+    font-weight: 600;
+    transition: opacity 0.3s ease;
+    width: 100%;
+}
+
+.stButton > button:hover {
+    opacity: 0.9;
+    color: white;
+}
