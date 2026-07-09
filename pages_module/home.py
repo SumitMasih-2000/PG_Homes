@@ -13,7 +13,6 @@ def app():
         unsafe_allow_html=True,
     )
 
-    # --- Stats row (derived from real DB data) ---
     total_listings = len(properties)
     verified_count = sum(1 for p in properties if p["is_verified"])
     uni_partner_count = sum(1 for p in properties if p["uni_partner"])
@@ -28,7 +27,6 @@ def app():
     st.markdown("---")
     st.markdown("### ✨ Featured Properties")
 
-    # Show top-rated properties first
     featured = sorted(properties, key=lambda p: p["rating"], reverse=True)[:6]
 
     cols = st.columns(3)
