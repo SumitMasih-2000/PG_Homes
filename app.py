@@ -30,8 +30,8 @@ with st.sidebar:
 
     selected = option_menu(
         menu_title=None,
-        options=["Home", "Find PG/Flats", "University Partners", "Dashboard"],
-        icons=["house", "search", "building", "person-circle"],
+        options=["Home", "Find PG/Flats", "List Your Property", "University Partners", "Dashboard"],
+        icons=["house", "search", "plus-circle", "building", "person-circle"],
         menu_icon="cast",
         default_index=0,
         styles={
@@ -52,9 +52,12 @@ if selected == "Home":
 elif selected == "Find PG/Flats":
     from pages_module import search
     search.app()
+elif selected == "List Your Property":
+    from pages_module import list_property
+    list_property.app()
 elif selected == "University Partners":
     st.title("🎓 University Partners")
     st.info("University partner module under construction.")
 elif selected == "Dashboard":
     st.title("👤 Student Dashboard")
-    st.info("Dashboard module under construction.")# package init
+    st.info("Dashboard module under construction.")
