@@ -1,73 +1,34 @@
-/* Import Fonts */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@500;600;700&display=swap');
+import streamlit as st
 
-html, body, [class*="css"] {
-    font-family: 'Inter', sans-serif;
-    background-color: #F8FAFC;
-    color: #111827;
-}
-h1, h2, h3, h4, h5 {
-    font-family: 'Poppins', sans-serif;
-    color: #0F172A;
-}
-#MainMenu {visibility: hidden;}
-footer {visibility: hidden;}
-header {visibility: hidden;}
 
-[data-testid="stSidebar"] {
-    background: rgba(255, 255, 255, 0.7);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border-right: 1px solid #E5E7EB;
-}
+def render_property_card(title, location, price, rating, is_verified, uni_partner,
+                          image_url, amenities, owner_name=None, owner_contact=None):
+    verified_badge = '<span class="badge-verified">✓ Verified</span>' if is_verified else ''
+    uni_badge = '<span class="badge-uni">🎓 Uni Partner</span>' if uni_partner else ''
 
-.property-card {
-    background: #FFFFFF;
-    border-radius: 16px;
-    padding: 16px;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
-    transition: all 0.3s ease;
-    border: 1px solid #E5E7EB;
-    margin-bottom: 20px;
-}
-.property-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-    border-color: #2563EB;
-}
-.property-img {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
-    border-radius: 12px;
-}
-.badge-verified {
-    background: rgba(34, 197, 94, 0.1);
-    color: #22C55E;
-    padding: 4px 10px;
-    border-radius: 20px;
-    font-size: 12px;
-    font-weight: 600;
-}
-.badge-uni {
-    background: rgba(37, 99, 235, 0.1);
-    color: #2563EB;
-    padding: 4px 10px;
-    border-radius: 20px;
-    font-size: 12px;
-    font-weight: 600;
-}
-.stButton > button {
-    background: linear-gradient(135deg, #2563EB 0%, #1E40AF 100%);
-    color: white;
-    border: none;
-    border-radius: 8px;
-    padding: 0.5rem 1.5rem;
-    font-weight: 600;
-    transition: opacity 0.3s ease;
-    width: 100%;
-}
-.stButton > button:hover {
-    opacity: 0.9;
-    color: white;
-}
+    contact_html = ""
+    if owner_name or owner_contact:
+        contact_html = f"""
+        <div style="margin-top: 10px; padding-top: 10px; border-top: 1px dashed #E5E7EB; font-size: 0.85rem; color: #374151;">
+            👤 <b>{owner_name or 'Owner'}</b><br>
+            📞 {owner_contact or 'Contact via platform'}
+        </div>
+        """
+
+    html = f"""
+    <div class="property-card">
+        <img src="{image_url}" class="property-img" alt="Property">
+        <div style="margin-top: 12px; display: flex; justify-content: space-between; align-items: center;">
+            <div>{verified_badge} {uni_badge}</div>
+            <div style="font-weight: 600; color: #F59E0B;">★ {rating}</div>
+        </div>
+        <h3 style="margin: 10px 0 5px 0; font-size: 1.2rem;">{title}</h3>
+        <p style="color: #6B7280; font-size: 0.9rem; margin: 0 0 10px 0;">📍 {location}</p>
+        <p style="color: #6B7280; font-size: 0.85rem; margin: 0 0 10px 0;">{amenities}</p>
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+            <span style="font-size: 1.2rem; font-weight: 700; color: #2563EB;">₹{price}<span style="font-size: 0.8rem; color: #6B7280;">/month</span></span>
+        </div>
+        {contact_html}
+    </div>
+    """
+    st.markdown(html, unsafe_allow_html=True)
