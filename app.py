@@ -43,7 +43,7 @@ with st.sidebar:
     )
 
     st.markdown("---")
-    st.markdown("Logged in as **Student**")
+    
 
 # 5. Routing Engine
 if selected == "Home":
